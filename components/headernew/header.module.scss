@@ -1,0 +1,1670 @@
+@import "styles/variables.scss";
+@import "styles/mixin.scss";
+
+.sticky {
+  font-family: $fontFamily;
+  transition: all 0.6s ease-in-out;
+  position: fixed;
+  background: white;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 3px 6px 12px #ccc;
+  animation-name: stickyTop;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+
+  .headerMenuLeftSticky {
+    background-image: url("/images/logo.png");
+    background-color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 250px;
+    height: 80px;
+    margin-left: 20px;
+  }
+
+  .headerMenuRightSticky {
+    ul {
+      position: relative;
+      margin-right: 20px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+
+      @include devices(sp) {
+        flex-direction: column;
+        right: 0px;
+        top: 10px;
+      }
+
+      li {
+        padding: 10px 15px;
+        font-size: 13px;
+        color: $bgPrimary;
+        cursor: pointer;
+        white-space: nowrap;
+        margin: 0 4px;
+        color: #001217;
+
+        i {
+          padding-right: 7px;
+        }
+
+        select {
+          height: 37px;
+        }
+
+        &:first-child,
+        &:last-child {
+          @include devices(tablet) {
+            display: none;
+          }
+
+          @include devices(sp) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mainAnimation {
+  position: relative;
+  font-family: "Noto Sans Bengali", sans-serif;
+  margin-bottom: 180px;
+}
+
+.header {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: $fontFamily;
+  @include devices(pc) {
+    background-color: $bgPrimary;
+    animation-name: headerBGAnimation;
+    animation-duration: 1.6s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+  }
+
+  @include devices(tablet) {
+    background-color: $bgPrimary;
+    animation-name: headerBGAnimationSP;
+    animation-duration: 1.6s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+    height: 450px;
+  }
+  @include devices(sp) {
+    height: 490px;
+  }
+}
+
+@keyframes headerBGAnimation {
+  0% {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  70% {
+    border-radius: 0;
+  }
+
+  100% {
+    margin: 110px 10px 70px;
+    border-radius: 20px;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 140px - 100px);
+  }
+}
+
+@keyframes headerBGAnimationSP {
+  0% {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  70% {
+    border-radius: 0;
+  }
+
+  100% {
+    margin: 0 0 70px;
+    border-radius: 10px;
+    width: 100vw;
+  }
+}
+
+.header-bg {
+  position: relative;
+}
+
+.bottomSliderMenu {
+  background: $bgPrimary;
+  height: $height;
+}
+
+.headerMenu {
+  animation-name: headerMenuBgAm;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+  position: absolute;
+  opacity: 0;
+
+  @include devices(tablet) {
+    opacity: 1;
+  }
+}
+
+@keyframes headerMenuBgAm {
+  0% {
+    width: 100%;
+    height: $height;
+    border-radius: 0;
+  }
+
+  100% {
+    background: $bgPrimary;
+    height: $height;
+    width: 100%;
+    top: -$height;
+    opacity: 1;
+  }
+}
+
+.headerMenuLeft {
+  position: absolute;
+  left: 0;
+  top: calc(0px - $height - 10px);
+  width: $leftMenuWidth;
+  height: calc($height + 10px);
+  border-radius: 0 0 20px 0;
+  opacity: 0;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+  animation-delay: $animationDelay;
+
+  @include devices(pc) {
+    background-image: url("/images/logo.png");
+    background-color: white;
+    background-size: 280px 50px;
+    background-repeat: no-repeat;
+    animation-name: leftMenuAm;
+  }
+
+  @include devices(tablet) {
+    animation-name: leftMenuAmSP;
+    border-radius: 0;
+    width: 0;
+    height: 50px;
+    border-radius: 5px;
+    top: 20px;
+    left: 10px;
+    z-index: 8;
+    opacity: 1;
+    // background-image: url("/images/logo-sp.png");
+    background-image: url("/images/logo.png");
+    background-color: white;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+  }
+}
+
+@keyframes leftMenuAm {
+  0% {
+    width: 0;
+    z-index: 1;
+  }
+
+  100% {
+    width: $leftMenuWidth;
+    z-index: 2;
+
+    opacity: 1;
+  }
+}
+
+@keyframes leftMenuAmSP {
+  0% {
+    z-index: 1;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    width: 140px;
+  }
+}
+
+.logoText {
+  font-size: 30px;
+  color: $bgPrimary;
+  font-weight: bold;
+}
+
+.headerMenuRight {
+  position: absolute;
+  left: unset;
+  right: 0;
+  top: calc(0px - $height - 10px);
+  width: 0;
+  height: calc($height + 10px);
+  border-radius: 0 0 0 20px;
+  background: white;
+  animation-name: rightMenuAm;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-delay: $animationDelay;
+  z-index: 4;
+
+  ul {
+    padding: 0 0 0 20px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    position: absolute;
+
+    // top: calc(50% - 20px);
+    top: -3px;
+    right: 20px;
+    animation-name: rightMenuAmList;
+    animation-duration: $animationDuration;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    animation-delay: $animationDelay;
+    opacity: 0;
+
+    @include devices(tablet) {
+      flex-direction: column;
+      right: 0px;
+      top: 100px;
+      z-index: 9;
+    }
+
+    li {
+      padding: 10px 15px;
+      font-size: 13px;
+      color: $bgPrimary;
+      cursor: pointer;
+      white-space: nowrap;
+      margin: 0 4px;
+      color: #001217;
+
+      i {
+        padding-right: 7px;
+      }
+
+      select {
+        height: 37px;
+        font-family: $fontFamily;
+      }
+
+      &:first-child,
+      &:last-child {
+        @include devices(tablet) {
+          display: none;
+        }
+
+        @include devices(sp) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.selectLang {
+  border: 1px solid #cdcdcd;
+  border-radius: 12px;
+  padding: 6px 8px;
+  outline: none;
+}
+
+.headerTitle {
+  position: absolute;
+  // calc($height + 30px)
+  top: -100px;
+  left: 0;
+  height: $height;
+  background-color: unset;
+  animation-name: headerTitleAm;
+  animation-duration: $animationDuration;
+  animation-delay: $animationDelay;
+  animation-fill-mode: forwards;
+  color: #f5f5f5;
+  font-size: 20px;
+  text-align: center;
+  z-index: 4;
+  display: block;
+
+  @include devices(tablet) {
+    display: none;
+  }
+}
+
+@keyframes headerTitleAm {
+  0% {
+    left: 0;
+    width: calc(100% + 110px);
+    padding: 0;
+  }
+
+  100% {
+    // $height + 30px
+    top: -100px;
+    left: 0;
+    height: $height;
+    z-index: 4;
+    left: $leftMenuWidth;
+    width: calc($homeTitleWidth - 140px);
+    padding: 0px 50px;
+    font-weight: bold;
+    border-top: 30px solid $bgPrimary;
+    border-radius: 20px 20px 0 0;
+    background: $bgPrimary;
+  }
+}
+
+.headerTitleTextTop {
+  font-size: 16px;
+  color: white;
+  padding-bottom: 15px;
+  white-space: nowrap;
+  position: relative;
+  top: 0px;
+  text-align: center;
+  display: block;
+  animation-name: ulListAm;
+  animation-delay: 0.6s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+
+  img {
+    border-radius: 10px;
+  }
+  @include devices(tablet) {
+    display: none;
+  }
+}
+
+.headerTitleText {
+  opacity: 0;
+  position: relative;
+  animation-duration: $animationDuration;
+  animation-delay: $animationDelay;
+  animation-name: headerTitleText;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  white-space: nowrap;
+  text-align: center;
+  top: 0px;
+  font-size: 26px;
+  display: block;  
+  @include devices(spc) {
+    font-size: 20px;
+  }
+}
+
+@keyframes headerTitleText {
+  0% {
+    opacity: 0;
+    width: 0;
+    font-size: 2px;
+  }
+
+  100% {
+    opacity: 1;
+    width: 100%;
+    font-size: 1.5vw;
+  }
+}
+
+.headerSubTitleText {
+  opacity: 0;
+  position: relative;
+  animation-duration: $animationDuration;
+  animation-delay: $animationDelay;
+  animation-delay: 2.6s;
+  animation-fill-mode: forwards;
+  text-align: center;
+  top: 30px;
+  font-size: 16px;
+  display: block;
+  animation-name: headerSubTitleTextAm;
+  color: #609788;
+  line-height: 1.5;
+}
+
+@keyframes headerSubTitleTextAm {
+  0% {
+    opacity: 0;
+    width: 0;
+    font-size: 2px;
+  }
+
+  100% {
+    opacity: 1;
+    width: 100%;
+    font-size: 0.9vw;
+  }
+}
+
+@keyframes headerTitleTextSP {
+  0% {
+    opacity: 0;
+    width: 0;
+    font-size: 2px;
+  }
+
+  100% {
+    opacity: 1;
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+/* Bottom Menu Banner */
+.bottomLeftMenu {
+  position: absolute;
+  left: 0;
+  bottom: -50px;
+  width: 0;
+  height: 0;
+  border-radius: 0 20px 0 0;
+  background: white;
+  animation-name: bottomLeftMenu;
+  animation-duration: $animationDuration;
+  animation-delay: $animationDelay;
+  animation-fill-mode: forwards;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  @include devices(tablet) {
+    width: 100px !important;
+  }
+  @include devices(sp) {
+    width: 70px !important;
+  }
+  @include devices(ssp) {
+    width: 50px !important;
+  }
+  .iconBorder {
+    padding: 10px 20px;
+    border-radius: 100%;
+    cursor: pointer;
+    border: 1px solid $bgSecondary;
+    left: 9%;
+ 
+    @include devices(sp) {
+      padding: 0px 10px;
+      position: absolute;
+      left: 20%;
+      top: 20px;
+    }
+    @include devices(ssp){
+      left: 9%;
+    }
+  }
+}
+
+//
+@keyframes bottomLeftMenu {
+  0% {
+    width: 0;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  100% {
+    width: $bottomLeftMenu;
+    z-index: 2;
+    height: $bottomHeight;
+    opacity: 1;
+  }
+}
+
+.bottomRightMenu {
+  position: absolute;
+  right: 0px;
+  bottom: -80px;
+  width: 0;
+  height: 0;
+
+  background: white;
+  animation-name: bottomRightMenuAm;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-delay: $animationDelay;
+  @include devices(tablet) {
+    width: 200px !important;
+  }
+  @include devices(sp) {
+    width: 70px !important;
+  }
+  @include devices(ssp) {
+    width: 50px !important;
+  }
+}
+
+@keyframes bottomRightMenuAm {
+  0% {
+    width: 0;
+    z-index: 1;
+  }
+
+  100% {
+    width: $bottomRightWidth;
+    height: calc($bottomHeight + 30px);
+    z-index: 3;
+    border-radius: 20px 0 0 0;
+  }
+}
+
+.bottomSlider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+
+  @include devices(sp) {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .bottomSliderItem {
+    white-space: nowrap;
+    margin: 0 10px;
+    padding-top: 7px;
+    border-top: 2px solid #ccc;
+    color: #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    @include devices(pc) {
+      min-width: 60px;
+    }
+    @include devices(tablet) {
+      min-width: 40px;
+    }
+    span {
+      word-break: break-all;
+      &:nth-of-type(2) {
+        @include devices(sp) {
+          display: none;
+        }
+      }
+    }
+
+    @include devices(sp) {
+      max-width: 80px;
+      white-space: unset;
+      border-top: unset;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .sliderActive {
+    border-top: 2px solid $colorPrimary;
+    color: $colorPrimary;
+    span {
+      &:nth-of-type(2) {
+        @include devices(sp) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.bgButtonGreen {
+  background: #d4ffe9;
+  border-radius: 25px;
+}
+
+.bgButtonGreenDark {
+  background: #4ed890;
+  border-radius: 25px;
+  color: #001217 !important;
+}
+
+// SLider area animation started
+.sliderArea {
+  // init all var here
+  --vh: 60vh;
+  --firstBox: 160px;
+  --thirdBoxWidth: 101px;
+  --commonBoxWidth: 62px;
+  --eleventhBoxWidth: 278px;
+  --secondLineWidth: 350px;
+  --commonBoxMenuWidth: 278px;
+  --commonBoxMenuHeight: 127px;
+  --boxMenuFontSize: 20px;
+  --topPosition: 50%;
+  --tenthBoxMenuCutLeft: 30px;
+  --fourteenBoxCutLeft: 12px;
+  --fifteenBoxmenuCutLeft: 20px;
+  //padding related
+  --eighthBoxMenuPaddingTop: 40px;
+  --tenthBoxMenuPaddingTop: 25px;
+  --thirteenthBoxMenuPaddingTop: 25px;
+  --fifteenBoxmenuPaddingTop: 35px;
+  --tenthBoxLeftPos: calc(var(--firstBox) + var(--secondLineWidth) - var(--commonBoxMenuWidth) - var(--tenthBoxMenuCutLeft));
+  --tenthBoxTopPos:  calc(var(--topPosition) + 173px);
+  @include devices(medium) {
+    --vh: 65vh;
+    --topPosition: 45%;
+    --secondLineWidth: 250px;
+    --eleventhBoxWidth: 180px;
+    --commonBoxMenuWidth: 180px;
+    --firstBox: 140px;
+    --tenthBoxMenuCutLeft: 30px;
+    --eighthBoxMenuPaddingTop: 18px;
+    --tenthBoxMenuPaddingTop: 5px;
+    --thirteenthBoxMenuPaddingTop: 45px;
+    --fifteenBoxmenuPaddingTop: 15px;
+  }
+  @include devices(spc) {
+    --secondLineWidth: 190px;
+    --eleventhBoxWidth: 170px;
+    --commonBoxMenuWidth: 180px;
+    --firstBox: 130px;
+    --boxMenuFontSize: 15px;
+
+    --eighthBoxMenuPaddingTop: 25px;
+    --tenthBoxMenuPaddingTop: 15px;
+    --thirteenthBoxMenuPaddingTop: 50px;
+    --fifteenBoxmenuPaddingTop: 25px;
+  }
+
+  @include devices(xsmpc) {
+    --secondLineWidth: 110px;
+    --eleventhBoxWidth: 130px;
+    --commonBoxMenuWidth: 120px;
+    --firstBox: 120px;
+    --boxMenuFontSize: 15px;
+
+    --eighthBoxMenuPaddingTop: 10px;
+    --tenthBoxMenuPaddingTop: 0px;
+    --thirteenthBoxMenuPaddingTop: 70px;
+    --fifteenBoxmenuPaddingTop: 10px;
+  }
+  @include devices(tablet) {
+    --firstBox: 110px;
+    --vh: 85vh;
+    --commonBoxMenuWidth: 150px;
+    --eighthBoxMenuPaddingTop: 15px;
+    --tenthBoxMenuPaddingTop: 10px;
+    --fifteenBoxmenuPaddingTop: 15px;
+    --tenthBoxTopPos:  calc(var(--topPosition) + 178px);
+    --thirteenthBoxMenuPaddingTop: 65px;
+    --tenthBoxLeftPos: calc(var(--firstBox) + var(--secondLineWidth) - var(--commonBoxMenuWidth) - var(--tenthBoxMenuCutLeft) - 6px );
+  }
+  @include devices(sp) {
+    --firstBox: 100px;
+    --vh: 85vh;
+    --commonBoxMenuWidth: 150px;
+    --eighthBoxMenuPaddingTop: 15px;
+    --tenthBoxMenuPaddingTop: 10px;
+    --fifteenBoxmenuPaddingTop: 15px;
+    --tenthBoxTopPos:  calc(var(--topPosition) + 178px);
+    --thirteenthBoxMenuPaddingTop: 65px;
+    --tenthBoxLeftPos: calc(var(--firstBox) + var(--secondLineWidth) - var(--commonBoxMenuWidth) - var(--tenthBoxMenuCutLeft) - 6px );
+  }
+  @include devices(ssp) {
+    // --firstBox: 100px;
+    // --vh: 85vh;
+  }
+
+  // End var for animation
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: var(--vh);
+  z-index: 0;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+
+  @include devices(pc) {
+    width: 85%;
+    max-width: 1600px;
+    margin: auto;
+  }
+
+  @include devices(medium) {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+  }
+  @include devices(spc) {
+    width: 95%;
+    max-width: 1120px;
+  }
+
+  @include devices(xsmpc) {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  @include devices(tablet) {
+    top: 340px;
+    width: 100%;
+    height: 70vh;
+    overflow:hidden;
+    height: 75vh;
+    margin: 0 auto;
+    overflow:scroll;
+    display: inline-block;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar {
+      width: 0;
+      display: none;
+    }
+  }
+
+  @include devices(sp) {
+    top: 280px;
+    width: 100%;
+    overflow:hidden;
+    height: 75vh;
+    margin: 0 auto;
+    overflow:scroll;
+    display: inline-block;
+  }
+
+  .animationArea {
+
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    animation-name: animationAreaPosition;
+    @include devices(sp) {
+     animation-name: animationAreaPositionSP;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      left: 30%;
+      width: 940px;
+    }
+
+    animation-duration: 9s;
+    animation-fill-mode: forwards;
+    // animation-delay: 2s;
+  }
+  @keyframes animationAreaPosition {
+    0% {
+      left: 50%;
+    }
+
+    50% {
+      left: 30%;
+    }
+
+    70% {
+      left: 10%;
+    }
+
+    100% {
+      left: 0%;
+    }
+  }
+
+  @keyframes animationAreaPositionSP {
+    0% {
+      left: 30%;
+    }
+
+    20% {
+      left: -20%;
+    }
+
+    60% {
+      left: -40%;
+    }
+    85% {
+      left: -140%;
+    }
+    100%{
+      left: 1%;
+    }
+  }
+
+  .firstBox {
+    height: var(--firstBox);
+    width: var(--firstBox);
+    background: $animationBg;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--boxMenuFontSize);
+    text-align: center;
+    font-weight: bold;
+    color: $colorPrimary;
+    cursor: pointer;
+    position: absolute;
+    animation-name: firstBoxAm;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    &:hover {
+      //   background: rgba($animationBg, 0.7);
+    }
+  }
+
+  @keyframes firstBoxAm {
+    0% {
+      bottom: 0px;
+    }
+    100% {
+      bottom: unset;
+      top: var(--topPosition);
+      transform: translateY(-50%) rotate(360deg);
+    }
+  }
+
+  .secondLine {
+    position: absolute;
+    height: 50px;
+    width: 0;
+    background-image: url("/images/banner/2.png");
+    background-size: cover;
+    animation-name: secondLineAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+    top: var(--topPosition);
+    left: var(--firstBox);
+    transform: translateY(-50%);
+    @include devices(medium) {
+      border-radius: 0 0 20px 0;
+    }
+   
+  }
+  @keyframes secondLineAm {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: var(--secondLineWidth);
+    }
+  }
+
+  .thirdBox {
+    position: absolute;
+    height: 59px;
+    background-image: url("/images/banner/3.png");
+    background-size: cover;
+    animation-name: lefttoRightAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.9s;
+    top: calc(var(--topPosition) - 33px);
+    left: calc(var(--firstBox) + var(--secondLineWidth) - 7px);
+    transform: translateY(-50%);
+  }
+  @keyframes lefttoRightAm {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: var(--thirdBoxWidth);
+    }
+  }
+
+  .fourthdBox {
+    position: absolute;
+    height: 59px;
+    background-image: url("/images/banner/3.png");
+    background-size: cover;
+    animation-name: lefttoRightAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.3s;
+    top: calc(var(--topPosition) - 84px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) - 15px
+    );
+    transform: translateY(-50%);
+  }
+
+  .fifthBox {
+    position: absolute;
+    height: 59px;
+    background-image: url("/images/banner/5.png");
+    background-size: cover;
+    animation-name: lefttoRightAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.7s;
+    top: calc(var(--topPosition) + 10px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) - 15px
+    );
+    transform: translateY(-50%);
+  }
+
+  $sixBoxWidth: 84px;
+  .sixthBox {
+    position: absolute;
+    height: 44px;
+    background-image: url("/images/banner/6.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: sixthBoxAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 2.1s;
+    top: calc(var(--topPosition) + 53px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) - 98px
+    );
+    transform: translateY(-50%);
+  }
+  @keyframes sixthBoxAm {
+    0% {
+      width: 0;
+      top: calc(var(--topPosition) + 53px);
+      left: calc(
+        var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) - 98px +
+          var(--thirdBoxWidth)
+      );
+    }
+    100% {
+      width: var(--thirdBoxWidth);
+      height: 44px;
+      top: calc(var(--topPosition) + 53px);
+      left: calc(
+        var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) - 98px
+      );
+      transform: translateY(-50%);
+    }
+  }
+
+  .seventhBox {
+    position: absolute;
+    height: var(--commonBoxWidth);
+    background-image: url("/images/banner/7.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: lefttoRightAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 2.5s;
+    top: calc(var(--topPosition) + 59px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) + 74px
+    );
+    transform: translateY(-50%);
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 24px;
+      left: 22px;
+      font-size: 22px;
+    }
+  }
+
+  // menu চাঁদা
+  .eighthBoxMenu {
+    position: absolute;
+    height: var(--commonBoxMenuHeight);
+    background-image: url("/images/banner/8.png");
+    background-position: top left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: eighthBoxMenuAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 2.9s;
+    top: calc(var(--topPosition) + 140px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) + 123px
+    );
+    @include devices(sp){
+      top: calc(var(--topPosition) + 145px);
+      left: calc(
+        var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) + 128px
+      );
+    }
+    transform: translateY(-50%);
+    font-size: var(--boxMenuFontSize);
+    text-align: center;
+    font-weight: bold;
+    color: $colorPrimary;
+
+    width: 0;
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+    }
+    p {
+      padding-top: var(--eighthBoxMenuPaddingTop);
+    }
+  }
+  @keyframes eighthBoxMenuAm {
+    0% {
+      width: 0;
+    }
+    100% {
+      // width: 227px;
+      width: var(--commonBoxMenuWidth);
+    }
+  }
+
+  .ninethBox {
+    position: absolute;
+    height: var(--commonBoxWidth);
+    width: 0;
+    background-image: url("/images/banner/9.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: ninethBoxAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 3.3s;
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 23px;
+      left: 12px;
+      font-size: 24px;
+    }
+  }
+  @keyframes ninethBoxAm {
+    0% {
+      width: 0;
+      top: calc(var(--topPosition) + 93px);
+      left: calc(var(--firstBox) + var(--secondLineWidth));
+      transform: translateY(-50%);
+    }
+
+    100% {
+      top: calc(var(--topPosition) + 93px);
+      left: calc(var(--firstBox) + var(--secondLineWidth) - 45px);
+      transform: translateY(-50%);
+      width: var(--commonBoxWidth);
+    }
+  }
+
+  // menu  জনসেবায়   এসোসিয়েশন
+  .tenthBoxMenu {
+    position: absolute;
+    height: var(--commonBoxMenuHeight);
+    width: 0;
+    background-image: url("/images/banner/10.png");
+    background-position: top right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: tenthBoxMenuAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 3.7s;
+    font-size: var(--boxMenuFontSize);
+    text-align: center;
+    font-weight: bold;
+    color: $colorPrimary;
+    cursor: pointer;
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+    }
+    p {
+      text-align: center;
+      padding-top: var(--tenthBoxMenuPaddingTop);
+      margin-left: -14px;
+    }
+  }
+
+
+  @keyframes tenthBoxMenuAm {
+    0% {
+      width: 0;
+      top: calc(var(--topPosition) + 123px);
+      left: calc(var(--firstBox) + var(--secondLineWidth) - 43px);
+    }
+
+    100% {
+      top: var(--tenthBoxTopPos);
+      left: var(--tenthBoxLeftPos);
+      transform: translateY(-50%);
+      width: var(--commonBoxMenuWidth);
+    }
+  }
+
+  .eleventhLine {
+    position: absolute;
+    height: 46px;
+    background-image: url("/images/banner/11.png");
+    background-size: cover;
+    animation-name: eleventhLineAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 4.1s;
+    top: calc(var(--topPosition) - 50px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) + 77px
+    );
+    transform: translateY(-50%);
+    @include devices(medium) {
+      border-radius: 0 25px 0 0;
+    }
+  }
+  @keyframes eleventhLineAm {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--eleventhBoxWidth);
+    }
+  }
+  .twelvethBox {
+    position: absolute;
+    height: var(--commonBoxWidth);
+    background-image: url("/images/banner/12.png");
+    background-size: cover;
+    animation-name: commonBoxAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 4.5s;
+    top: calc(var(--topPosition) - 6px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+        var(--eleventhBoxWidth) + 66px
+    );
+    transform: translateY(-50%);
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 25px;
+      left: 27px;
+      font-size: 20px;
+    }
+  }
+
+  @keyframes commonBoxAm {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--commonBoxWidth);
+    }
+  }
+
+  // menu ই-ডিরেক্টরি
+  .thirteenthBoxMenu {
+    position: absolute;
+    height: var(--commonBoxMenuHeight);
+    width: 0;
+    background-image: url("/images/banner/13.png");
+    background-position: bottom left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: commonBoxMenuAM;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 4.9s;
+    font-size: var(--boxMenuFontSize);
+    text-align: center;
+    font-weight: bold;
+    color: $colorPrimary;
+    cursor: pointer;
+    top: calc(var(--topPosition) - 78px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+        var(--eleventhBoxWidth) + var(--commonBoxWidth) + var(--commonBoxWidth) -
+        8px
+    );
+    @include devices(tablet){
+      top: calc(var(--topPosition) - 80px);
+      left: calc(
+        var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+          var(--eleventhBoxWidth) + var(--commonBoxWidth) + var(--commonBoxWidth) -
+          6px
+      );
+    }
+    transform: translateY(-50%);
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+    }
+    p {
+      text-align: center;
+      padding-top: var(--thirteenthBoxMenuPaddingTop);
+    }
+  }
+
+  .fourteenBox {
+    position: absolute;
+    height: var(--commonBoxWidth);
+    background-image: url("/images/banner/14.png");
+    background-size: cover;
+    animation-name: commonBoxAm;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 5.3s;
+    top: calc(var(--topPosition) - 8px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+        var(--eleventhBoxWidth) + var(--commonBoxMenuWidth) +
+        var(--thirdBoxWidth) - var(--fourteenBoxCutLeft)
+    );
+    @include devices(medium) {
+      top: calc(var(--topPosition) - 5px);
+      left: calc(
+        var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+          var(--eleventhBoxWidth) + var(--commonBoxMenuWidth) +
+          var(--thirdBoxWidth) - var(--fourteenBoxCutLeft) + 15px
+      );
+    }
+    transform: translateY(-50%);
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 27px;
+      left: 27px;
+      font-size: 20px;
+    }
+  }
+
+  // menu অন্যান্য menu
+  .fifteenBoxmenu {
+    position: absolute;
+    height: var(--commonBoxMenuHeight);
+    width: 0;
+    background-image: url("/images/banner/15-new.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-name: commonBoxMenuAM;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-delay: 5.7s;
+    font-size: var(--boxMenuFontSize);
+    text-align: center;
+    font-weight: bold;
+    color: $colorPrimary;
+    cursor: pointer;
+    top: calc(var(--topPosition) + 77px);
+    left: calc(
+      var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+        var(--eleventhBoxWidth) + var(--commonBoxMenuWidth) +
+        var(--thirdBoxWidth) + var(--commonBoxWidth) -
+        var(--fifteenBoxmenuCutLeft)
+    );
+    @include devices(medium) {
+      top: calc(var(--topPosition) + 82px);
+      left: calc(
+        var(--firstBox) + var(--secondLineWidth) + var(--thirdBoxWidth) +
+          var(--eleventhBoxWidth) + var(--commonBoxMenuWidth) +
+          var(--thirdBoxWidth) + var(--commonBoxWidth) -
+          var(--fifteenBoxmenuCutLeft) + 15px
+      );
+    }
+    transform: translateY(-50%);
+    i {
+      color: $colorPrimary;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+    }
+    p {
+      text-align: center;
+      padding-top: var(--fifteenBoxmenuPaddingTop);
+    }
+  }
+
+  @keyframes commonBoxMenuAM {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--commonBoxMenuWidth);
+    }
+  }
+
+  /*
+  | End animation area code for banner
+  */
+}
+
+// right menu outside of animation
+@keyframes rightMenuAm {
+  0% {
+    z-index: 1;
+    right: -200px;
+    width: 0;
+  }
+
+  100% {
+    width: $leftMenuWidth;
+    z-index: 2;
+    right: 0;
+    justify-content: flex-end;
+  }
+}
+
+@keyframes rightMenuAmList {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.bottomRound {
+  position: absolute;
+  bottom: -30px;
+  left: $bottomLeftMenu;
+  height: 30px;
+  animation-name: bottomRoundAm;
+  animation-duration: $animationDuration;
+  animation-delay: $animationDelay;
+  animation-fill-mode: forwards;
+  padding: 0;
+  margin: 0;
+  z-index: 4;
+  @include devices(tablet) {
+    width: calc(100% - 300px) !important;
+    left: 100px !important;
+  }
+  @include devices(sp) {
+    width: calc(100% - 140px) !important;
+    left: 70px !important;
+  }
+
+  @include devices(ssp) {
+    bottom: -20px !important;
+    width: calc(100% - 100px) !important;
+    left: 50px !important;
+  }
+}
+
+@keyframes bottomRoundAm {
+  0% {
+    left: 0;
+    width: calc(100%);
+    padding: 0;
+  }
+
+  100% {
+    bottom: -30px;
+    height: 30px;
+    left: calc($bottomLeftMenu);
+    width: calc(68vw - 40px);
+    font-weight: bold;
+    border-top: 30px solid $bgPrimary;
+    border-radius: 0 0 20px 20px;
+    background: $bgPrimary;
+    padding: 0;
+  }
+}
+
+.bottomArea {
+  height: 70px;
+  background: $bgPrimary;
+  width: 100%;
+  position: relative;
+  top: calc(100% - 1px);
+  @include devices(ssp) {
+    // background: red;
+    height: 70px;
+  }
+}
+
+@keyframes stickyTop {
+  0% {
+    top: -110px;
+  }
+
+  100% {
+    top: 0;
+  }
+}
+
+.headerTitleSP {
+  @include devices(pc) {
+    display: none;
+  }
+
+  @include devices(tablet) {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 100px;
+
+    .headerTitleTextTopSP {
+      color: #cdcdcd;
+      text-align: center;
+      font-size: 3.5vw;
+      animation-name: ulListAm;
+      animation-duration: $animationDuration;
+      animation-fill-mode: forwards;
+      opacity: 0;
+    }
+
+    .headerTitleTextSP {
+      opacity: 0;
+      color: #f8f8f8;
+      text-align: center;
+      font-size: 1px;
+      margin-top: -10px;
+      animation-duration: 0.6s;
+      animation-name: headerTitleTextSPAm;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes headerTitleTextSPAm {
+      0%{
+
+      }
+      100%{
+        opacity: 1;
+        font-size: 4.1vw;
+      }
+      
+    }
+
+  }
+}
+@keyframes smMenuBgAm {
+  0% {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    width: calc(100%);
+    height: 100vh;
+  }
+}
+
+@keyframes smMenuBgAmPC {
+  0% {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.mobileMenu {
+  display: block;
+  width: calc(100%);
+  height: 100vh;
+  background: #032019;
+  z-index: 10;
+  position: fixed;
+  margin: auto;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+  @include devices(pc) {
+    animation-name: smMenuBgAmPC;
+    border-radius: 20px;
+  }
+
+  @include devices(sp) {
+    animation-name: smMenuBgAm;
+  }
+  .close {
+    width: 40px;
+    height: 40px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 11;
+    border-radius: 100%;
+    color: $colorPrimary;
+    i {
+      font-size: 32px;
+    }
+  }
+  .spMenuList {
+    margin-top: 20px;
+    margin-left: 20px;
+    ul {
+      opacity: 0;
+      list-style: none;
+      margin-top: 10px;
+      padding: 0;
+      margin: 50px 0 0;
+      animation-name: ulListAm;
+      animation-duration: $animationDuration;
+      animation-delay: 0.7s;
+      animation-fill-mode: forwards;
+    }
+    li {
+      white-space: nowrap;
+      color: white;
+      margin-bottom: 20px;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      i {
+        margin-right: 15px;
+      }
+    }
+  }
+  .menuTwoSide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+  }
+}
+.mobileClose {
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+  @include devices(pc) {
+    animation-name: spBgClosePC;
+  }
+  @include devices(sp) {
+    animation-name: spBgClose;
+  }
+
+  .spMenuList,
+  .close {
+    display: none;
+  }
+}
+@keyframes spBgClosePC {
+  0% {
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes spBgClose {
+  0% {
+    width: calc(100% - 10px);
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+  100% {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes ulListAm {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.onlyMobile {
+  // display: none;
+  @include devices(tablet) {
+    display: block;
+  }
+}
