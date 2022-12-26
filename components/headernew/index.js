@@ -157,7 +157,12 @@ export default function Home() {
                     <a> Zulkar (developer)</a>
                   </Link>
                 </li>
-
+                <li>
+                  <i className="fa-sharp fa-solid fa-square-check"></i>
+                  <Link href="#">
+                    <a> Safa (developer)</a>
+                  </Link>
+                </li>
 
               </ul>
             </div>
